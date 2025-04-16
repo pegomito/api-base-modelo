@@ -2,26 +2,17 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../configs/postgres.js";
 
-const Cliente = sequelize.define(
-  'clientes',
+const Cargo = sequelize.define(
+  'cargos',
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    nome: {
-      type: DataTypes.STRING(100),
+    descricao: {
+      type: DataTypes.STRING,
       allowNull: false,
-    },
-    cpf: {
-      type: DataTypes.STRING(14),
-      allowNull: false,
-      unique: true,
-    },
-    dataNascimento: {
-      field: 'data_nascimento',
-      type: DataTypes.DATEONLY,
     }
   },
   {
@@ -32,4 +23,4 @@ const Cliente = sequelize.define(
   }
 );
 
-export default Cliente;
+export default Cargo;

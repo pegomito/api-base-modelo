@@ -1,9 +1,8 @@
-import clienteRoute from "./clienteRoute.js";
-import livroRoute from "./livroRoute.js";
+import usuarioRoute from "./usuarioRoute.js";
+
 
 function Routes(app) {
-    livroRoute(app);
-    clienteRoute(app);
+    usuarioRoute(app);
 }
 
 export default Routes;

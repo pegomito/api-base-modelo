@@ -1,5 +1,0 @@
-import Cliente from "./ClienteModel.js"
-
-(async () => {
-    await Cliente. sync({ force:true}); //await usado para espera(necessario PROMISE)
-})();

@@ -1,11 +1,11 @@
 
-import Cliente from "../models/ClienteModel.js";
+import Usuario from "../models/UsuariosModel.js";
 
 const get = async (req, res) => {
     try {
         const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null
         if (!id) {
-            const response = await Cliente.findAll({ //await conexao com banco de dados
+            const response = await Usuario.findAll({ //await conexao com banco de dados
                 order: [['id', 'desc']]
             });
 
@@ -15,7 +15,7 @@ const get = async (req, res) => {
             });
         }
 
-        const response = await Cliente.findOne({
+        const response = await Usuario.findOne({
             where: {
                 id: id
             }
@@ -39,7 +39,7 @@ const get = async (req, res) => {
 
 const update = async (corpo, id) => {
     try {
-      const response = await Cliente.findOne({
+      const response = await Usuario.findOne({
         where: {
           id
         }
@@ -87,13 +87,15 @@ const create = async (corpo) => {
       const {
         nome,
         cpf,
-        dataNascimento
+        email,
+        estudante
       } = corpo
   
-      const response = await Cliente.create({
+      const response = await Usuario.create({
         nome: nome,
         cpf,
-        dataNascimento
+        email,
+        estudante
       });
   
       return response;
@@ -109,7 +111,7 @@ const create = async (corpo) => {
         return res.status(400).send('informa ai paezao')
       }
   
-      const response = await Cliente.findOne({
+      const response = await Usuario.findOne({
         where: {
           id
         }
@@ -135,5 +137,5 @@ const create = async (corpo) => {
   export default {
     get,
     persist,
-    destroy,
+    destroy
   }

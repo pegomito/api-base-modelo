@@ -1,10 +1,11 @@
-import Emprestimo from "../models/EmprestimoModel";
+
+import Cargo from "../models/CargosModel.js";
 
 const get = async (req, res) => {
     try {
         const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null
         if (!id) {
-            const response = await Emprestimo.findAll({ //await conexao com banco de dados
+            const response = await Cargo.findAll({ //await conexao com banco de dados
                 order: [['id', 'desc']]
             });
 
@@ -14,7 +15,7 @@ const get = async (req, res) => {
             });
         }
 
-        const response = await Emprestimo.findOne({
+        const response = await Cargo.findOne({
             where: {
                 id: id
             }
@@ -36,25 +37,9 @@ const get = async (req, res) => {
     }
 }
 
-const create = async (corpo) => {
+const update = async (corpo, id) => {
     try {
-      const {
-        dataEmprestimo
-      } = corpo
-  
-      const response = await Emprestimo.create({
-        dataEmprestimo
-      });
-  
-      return response;
-    } catch (error) {
-      throw new Error(error.message)
-    }
-  }
-
-  const update = async (corpo, id) => {
-    try {
-      const response = await Emprestimo.findOne({
+      const response = await Cargo.findOne({
         where: {
           id
         }
@@ -71,7 +56,7 @@ const create = async (corpo) => {
     } catch (error) {
       throw new Error(error.message)
     }
-  }  
+  }
 
   const persist = async (req, res) => {
     try {
@@ -97,6 +82,22 @@ const create = async (corpo) => {
     }
   }
 
+const create = async (corpo) => {
+    try {
+      const {
+        descricao
+      } = corpo
+  
+      const response = await Cargo.create({
+        descricao
+      });
+  
+      return response;
+    } catch (error) {
+      throw new Error(error.message)
+    }
+  }
+
   const destroy = async (req, res) => {
     try {
       const id = req.params.id ? req.params.id.toString().replace(/\D/g, '') : null;
@@ -104,7 +105,7 @@ const create = async (corpo) => {
         return res.status(400).send('informa ai paezao')
       }
   
-      const response = await Emprestimo.findOne({
+      const response = await Cargo.findOne({
         where: {
           id
         }
@@ -132,4 +133,3 @@ const create = async (corpo) => {
     persist,
     destroy
   }
-  
