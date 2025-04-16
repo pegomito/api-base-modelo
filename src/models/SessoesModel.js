@@ -64,4 +64,4 @@ Sessao.belongsTo(Filme, {
 
 
 
-export  default Sessao;
+export default Sessao;
